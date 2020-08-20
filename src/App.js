@@ -16,20 +16,23 @@ class App extends Component {
     super();
     this.state = {
       input: '',
+      imageUrl: '',
     }
   }
 
   onInputChange = (event) => {
-    console.log(event.target.value);
+    this.setState({input: event.target.value});
   }
 
   onButtonSubmit = () => {
+    this.setState({imageUrl: this.state.input});
       app.models.predict(
-        Clarifai.COLOR_MODEL, 
-        "https://samples.clarifai.com/face-det.jpg"
-      ).then(
+        Clarifai.FACE_DETECT_MODEL, 
+        this.state.input
+      )
+      .then(
       function(response) {
-        console.log(response)
+        console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
       },
       function(err) {
         // there was an error
@@ -47,7 +50,7 @@ class App extends Component {
           onInputChange={this.onInputChange} 
           onButtonSubmit={this.onButtonSubmit}
         />
-        <FaceRecognition />
+        <FaceRecognition imageUrl={this.state.imageUrl}/>
       </div>
     );
   }
