@@ -1,5 +1,9 @@
 nav {
     display: flex;
     justify-content: flex-end;
-    margin: 3rem 3rem 0 0;
+    margin: 3rem 1rem 0 0;
+}
+
+.nav-links {
+    padding-right: 1.5rem;
 }
