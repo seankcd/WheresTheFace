@@ -4,9 +4,8 @@ import './Rank.css';
 const Rank = ({name, entries}) => {
     return (
         <div className='ranking'>
-            {`${name} , your current entry count is...`}
             <div className='white f3'>
-                {entries}
+                {`${name} , you've submited ${entries} photos`}
             </div>
         </div>
     );
